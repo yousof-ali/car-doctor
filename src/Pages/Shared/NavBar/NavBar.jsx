@@ -13,7 +13,10 @@ const NavBar = () => {
     <li><NavLink to={'/about'}>About</NavLink></li>
     <li><NavLink to={'/services'}>Services</NavLink></li>
     <li><NavLink to={'/blog'}>Blog</NavLink></li>
-    <li><NavLink to={'/contact'}>Contact</NavLink></li>
+    <li><NavLink to={'/contact'}>Contact</NavLink></li> 
+    <li><NavLink to={'/Login'}>Login</NavLink></li> 
+    <li><NavLink to={'/signUp'}>Sign Up</NavLink></li> 
+
     
     </>
   return (

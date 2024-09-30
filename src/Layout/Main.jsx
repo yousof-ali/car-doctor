@@ -7,6 +7,7 @@ const Main = () => {
     return (
         <div>
             <NavBar></NavBar>
+            <hr />
             <Outlet></Outlet>
             <Footer></Footer>
         </div>
