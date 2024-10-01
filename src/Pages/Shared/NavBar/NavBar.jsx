@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useContext } from "react";
 import logo from '../../../assets/logo.svg'
 import { Link, NavLink } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { IoBagHandleOutline } from "react-icons/io5";
 import "./NavBar.css"
+import { AuthContext } from "../../../Providers/AuthProvider";
 
 
 
 const NavBar = () => {
+
+   const {user,logOut} = useContext(AuthContext);
+   const handleLogOut = () => {
+        logOut()
+        .then(res => {
+          console.log(res)
+        })
+           
+   }
     const navItems = <>
     <li><NavLink to={'/'}>Home</NavLink></li>
     <li><NavLink to={'/about'}>About</NavLink></li>
-    <li><NavLink to={'/services'}>Services</NavLink></li>
     <li><NavLink to={'/blog'}>Blog</NavLink></li>
     <li><NavLink to={'/contact'}>Contact</NavLink></li> 
-    <li><NavLink to={'/Login'}>Login</NavLink></li> 
-    <li><NavLink to={'/signUp'}>Sign Up</NavLink></li> 
+    {
+      user?.email?<><li><Link onClick={handleLogOut}>Log Out</Link></li> <li><NavLink to={'/bookings'}>Bookings</NavLink></li> </> : <><li><NavLink to={'/Login'}>Login</NavLink></li> 
+      <li><NavLink to={'/signUp'}>Sign Up</NavLink></li></>
+    }
+    
 
     
     </>

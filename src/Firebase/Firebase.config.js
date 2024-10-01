@@ -6,16 +6,16 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyDl5pj19D7C7TkkDyX8afsGyoLFqzVe8mY",
-    authDomain: "car-doctor-ef749.firebaseapp.com",
-    projectId: "car-doctor-ef749",
-    storageBucket: "car-doctor-ef749.appspot.com",
-    messagingSenderId: "120967039945",
-    appId: "1:120967039945:web:9d9bc7468484f56d643618"
-  };
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID
+};
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export default auth
+export default auth;

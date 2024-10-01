@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useContext } from "react";
 import CommonButton from "../../Component/CommonButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import loginImg from "../../assets/images/login/login.svg"
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 
 
 const Login = () => {
+  const{signIn} = useContext(AuthContext);
+  const navigate = useNavigate();
+
     const handleSubmit = (e) =>{
         e.preventDefault();
         const from = e.target 
         const email = from.email.value
         const password = from.password.value
         console.log(email,password)
+
+        signIn(email,password)
+        .then(result => {
+          console.log(result.user);
+          navigate('/')
+        })
+        .catch((e) => {
+          console.log(e.message);
+        })
     }
   return (
     <div className="hero bg-base-100 min-h-screen">

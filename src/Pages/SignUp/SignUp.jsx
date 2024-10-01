@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import CommonButton from "../../Component/CommonButton";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -8,7 +8,8 @@ import loginImg from "../../assets/images/login/login.svg"
 import  { AuthContext } from '../../Providers/AuthProvider';
 
 const SignUp = () => {
-    const {signUp} = useContext(AuthContext)
+    const {signUp} = useContext(AuthContext);
+    const navigate = useNavigate()
     const handleSubmit = (e) =>{
         e.preventDefault();
         const from = e.target 
@@ -17,16 +18,14 @@ const SignUp = () => {
         const password = from.password.value
 
         signUp(email,password)
-        .then(result => result.json())
-        .then(data => {
-            console.log(data.user);
-        })
-        .catch((e) => {
-            console.log(e.message);
+        .then(result => {
+          console.log(result.user);
+          navigate('/')
+
         })
         
-
     }
+    console.log(signUp);
     return (
         <div className="hero bg-base-100 min-h-screen">
       <div className="flex flex-col my-4 md:my-0 mx-2 items-center max-w-[1500px] gap-12 lg:flex-row">
