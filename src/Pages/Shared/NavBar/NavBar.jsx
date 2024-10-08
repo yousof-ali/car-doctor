@@ -20,8 +20,8 @@ const NavBar = () => {
    }
     const navItems = <>
     <li><NavLink to={'/'}>Home</NavLink></li>
+    <li><NavLink to={'/service'}>Service</NavLink></li>
     <li><NavLink to={'/about'}>About</NavLink></li>
-    <li><NavLink to={'/blog'}>Blog</NavLink></li>
     <li><NavLink to={'/contact'}>Contact</NavLink></li> 
     {
       user?.email?<><li><Link onClick={handleLogOut}>Log Out</Link></li> <li><NavLink to={'/bookings'}>Bookings</NavLink></li> </> : <><li><NavLink to={'/Login'}>Login</NavLink></li> 

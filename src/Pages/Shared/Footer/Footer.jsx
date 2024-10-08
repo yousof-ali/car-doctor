@@ -3,34 +3,44 @@ import logo from '../../../assets/logo.svg'
 
 const Footer = () => {
   return (
-    <footer className="footer bg-base-200 text-base-content p-10">
+    <footer className="footer bg-black text-white  p-10">
       <aside>
        <img className="w-16" src={logo} alt="" />
         <p>
-          ACME Industries Ltd.
+          Car Doctor Ltd.
           <br />
-          Providing reliable tech since 1992
         </p>
+        <div className="flex gap-4 items-center">
+          <div className="bg-gray-600 p-2  rounded-full">
+            g
+          </div>
+          <div className="bg-gray-600 p-2  rounded-full">
+            t
+          </div>
+          <div className="bg-gray-600 p-2  rounded-full">
+            i
+          </div>
+          <div className="bg-gray-600 p-2  rounded-full">
+            in
+          </div>
+        </div>
       </aside>
       <nav>
-        <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Branding</a>
-        <a className="link link-hover">Design</a>
-        <a className="link link-hover">Marketing</a>
-        <a className="link link-hover">Advertisement</a>
+        <h6 className="footer-title">About</h6>
+        <a href="/" className="link link-hover">Home</a>
+        <a href="/service" className="link link-hover">Service</a>
+        <a className="link link-hover">Contact</a>
       </nav>
       <nav>
         <h6 className="footer-title">Company</h6>
-        <a className="link link-hover">About us</a>
-        <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Jobs</a>
-        <a className="link link-hover">Press kit</a>
+        <a className="link link-hover">Why Car Doctor</a>
+        <a className="link link-hover">About</a>
       </nav>
       <nav>
-        <h6 className="footer-title">Legal</h6>
-        <a className="link link-hover">Terms of use</a>
-        <a className="link link-hover">Privacy policy</a>
-        <a className="link link-hover">Cookie policy</a>
+        <h6 className="footer-title">Support</h6>
+        <a className="link link-hover">Support Center</a>
+        <a className="link link-hover">Feedback</a>
+        <a className="link link-hover">CAccesbility</a>
       </nav>
     </footer>
   );

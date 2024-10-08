@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import CommonButton from "../../Component/CommonButton";
 import { AuthContext } from "../../Providers/AuthProvider";
+import serv from "../../assets/images/checkout/checkout.png";
 
 const CheckOut = () => {
   const{user} = useContext(AuthContext);
@@ -37,12 +38,23 @@ const CheckOut = () => {
     })
   }
   return (
-    <div className="hero bg-base-200 min-h-screen">
-      <div className="card  w-full px-8  shrink-0 mx-2">
-        <form onSubmit={handleCheckOut} className="">
-            <div>
-                <h2 className="text-center py-4 text-2xl font-bold">Book services</h2>
+    <div className=" min-h-screen">
+      <div className="relative">
+        <img className="w-full" src={serv} alt="" />
+        <div className="w-full flex items-center  rounded-xl h-full absolute top-0 bg-gradient-to-r from-[#151515] to-[rgba(21,21,21,0)]">
+          <h2 className="text-2xl md:text-5xl ml-4 md:ml-16  font-bold text-white">
+            Add New Service
+          </h2>
+        </div>
+        <div className="absolute bottom-0  w-full flex justify-center">
+            <div className="w-40 text-center py-2 md:py-4 text-white bg-[#FF3811]">
+            <p className="font-semibold">Home/Service</p>
             </div>
+        </div>
+
+      </div>
+      <div className="bg-base-200 rounded my-4 py-6 md:my-16 max-w-full md:max-w-[80%] px-8  shrink-0 md:mx-auto mx-2">
+        <form onSubmit={handleCheckOut} className="">
           <div className="md:flex gap-6">
             <div className="form-control flex-1">
               <label className="label">
