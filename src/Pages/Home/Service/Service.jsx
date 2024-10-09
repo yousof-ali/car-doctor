@@ -32,7 +32,7 @@ const Service = () => {
                 service.map(service => <SingleService key={service._id} service={service} ></SingleService> )
                }
             </div>
-            <div className='bg-black grid grid-cols-2 md:grid-cols-3  rounded px-2 gap-8  p-8 mt-6'>
+            <div className='bg-black my-12 grid grid-cols-2 md:grid-cols-3  rounded px-2 gap-8  p-8 '>
                    <div className='flex justify-center items-center text-white gap-2'>
                    <MdDateRange className='text-3xl' />
                    <div>

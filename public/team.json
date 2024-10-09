@@ -1,0 +1,38 @@
+
+[
+    {
+        "id": 1,
+        "img": "https://i.ibb.co.com/SyJS4qD/1.jpg",
+        "name": "Alice Johnson",
+        "expertise": "Engine Tuning",
+        "title": "Senior Mechanic"
+    },
+    {
+        "id": 2,
+        "img": "https://i.ibb.co.com/Hg2r503/2.jpg",
+        "name": "Bob Smith",
+        "expertise": "Electrical Systems",
+        "title": "Electrical Engineer"
+    },
+    {
+        "id": 3,
+        "img": "https://i.ibb.co.com/stfX32Z/3.jpg",
+        "name": "Charlie Brown",
+        "expertise": "Bodywork and Paint",
+        "title": "Body Shop Specialist"
+    },
+    {
+        "id": 4,
+        "img": "https://via.placeholder.com/150",
+        "name": "David Wilson",
+        "expertise": "Suspension and Steering",
+        "title": "Suspension Expert"
+    },
+    {
+        "id": 5,
+        "img": "https://via.placeholder.com/150",
+        "name": "Eve Davis",
+        "expertise": "Performance Upgrades",
+        "title": "Performance Specialist"
+    }
+]

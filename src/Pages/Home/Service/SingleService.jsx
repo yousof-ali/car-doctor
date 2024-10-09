@@ -8,13 +8,13 @@ const SingleService = ({ service }) => {
     } = service
   return (
     <div className="card bg-base-100 p-4 border">
-      <figure className="">
+      <div className="flex-grow">
         <img
           src={img}
           alt=""
           className="rounded-xl"
         />
-      </figure>
+      </div>
       <div className="mt-4">
         <h2 className="card-title">{title}</h2>
         <p className="text-[#FF3811] mt-4 font-bold ">Price : {price}</p>

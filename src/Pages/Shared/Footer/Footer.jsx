@@ -1,5 +1,14 @@
 import React from "react";
 import logo from '../../../assets/logo.svg'
+import { FaGoogle } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
+import { FaInstagram } from "react-icons/fa";
+import { FaLinkedinIn } from "react-icons/fa";
+
+
+
+
+
 
 const Footer = () => {
   return (
@@ -12,16 +21,20 @@ const Footer = () => {
         </p>
         <div className="flex gap-4 items-center">
           <div className="bg-gray-600 p-2  rounded-full">
-            g
+          <FaGoogle />
+
           </div>
           <div className="bg-gray-600 p-2  rounded-full">
-            t
+          <FaTwitter />
+
           </div>
           <div className="bg-gray-600 p-2  rounded-full">
-            i
+          <FaInstagram />
+
           </div>
           <div className="bg-gray-600 p-2  rounded-full">
-            in
+          <FaLinkedinIn />
+
           </div>
         </div>
       </aside>
