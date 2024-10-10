@@ -3,6 +3,7 @@ import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import CommonButton from "../../Component/CommonButton";
 import { AuthContext } from "../../Providers/AuthProvider";
 import serv from "../../assets/images/checkout/checkout.png";
+import Swal from "sweetalert2";
 
 const CheckOut = () => {
   const{user} = useContext(AuthContext);
@@ -33,7 +34,14 @@ const CheckOut = () => {
     .then(result => {
       console.log(result);
       if(result.insertedId){
-        navigate('/')
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Your work has been saved",
+          showConfirmButton: false,
+          timer: 1500
+        });
+        navigate('/bookings')
       }
     })
   }

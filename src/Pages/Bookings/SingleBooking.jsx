@@ -1,27 +1,38 @@
 import React from 'react';
 import CommonButton from '../../Component/CommonButton';
+import Swal from 'sweetalert2';
 
 const SingleBooking = ({booking,data,setData}) => {
 
     const handleDelete = (id) => {
-        const proceed = confirm("Are you sure ?");
-        if(proceed){
-            fetch(`http://localhost:5000/delete/${id}`,{
-                method:"DELETE"
-            })
-            .then(res => res.json())
-            .then(result => {
-                if(result.deletedCount > 0){
-                    alert("deleted!")
-                    const newData = data.filter(single => single._id !== id);
-                    setData(newData);
-                }
-                
-            }) 
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/delete/${id}`,{
+                    method:"DELETE"
+                })
+                .then(res => res.json())
+                .then(result => {
+                    if(result.deletedCount > 0){ 
+                        const newData = data.filter(single => single._id !== id);
+                        setData(newData);
 
-        }else{
-            console.log("cancel");
-        }
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                          });
+                    }  
+                }) 
+            }
+        });
     }
     
     const handleBookingConfirm = (id) => {
@@ -42,6 +53,14 @@ const SingleBooking = ({booking,data,setData}) => {
                 updated.status = "Done"
                 const newData = [updated, ...remaining];
                 setData(newData);
+
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             }
         })
     }
