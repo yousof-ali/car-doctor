@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import CommonButton from "../../Component/CommonButton";
 import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
@@ -6,6 +6,10 @@ import { FaGoogle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
 import loginImg from "../../assets/images/login/login.svg"
 import { AuthContext } from "../../Providers/AuthProvider";
+import { FaEye } from "react-icons/fa";
+import { FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
+
 
 
 
@@ -13,6 +17,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 const Login = () => {
   const{signIn} = useContext(AuthContext);
   const navigate = useNavigate();
+  const [show,setshow] = useState(true);
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -23,12 +28,22 @@ const Login = () => {
 
         signIn(email,password)
         .then(result => {
-          console.log(result.user);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Login",
+            showConfirmButton: false,
+            timer: 1500
+          });
           navigate('/')
         })
         .catch((e) => {
           console.log(e.message);
         })
+    }
+
+    const handleHide = () => {
+       setshow(!show);
     }
   return (
     <div className="hero bg-base-100 min-h-screen">
@@ -51,17 +66,20 @@ const Login = () => {
                 required
               />
             </div>
-            <div className="form-control">
+            <div className="form-control relative ">
               <label className="label">
                 <span className="label-text">Password</span>
               </label>
               <input
-                type="password"
+                type={`${show?"password":"text"}`}
                 placeholder="password"
-                className="input input-bordered"
+                className="input input-bordered "
                 name="password"
                 required
               />
+              <div className="cursor-pointer" onClick={handleHide}>
+                <span className="text-2xl absolute top-[42%] right-5">{show?<FaEye/>:<FaEyeSlash/>}</span>
+              </div>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
                   Forgot password?

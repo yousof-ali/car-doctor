@@ -14,11 +14,10 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
-        const userStateChange = onAuthStateChanged(auth, (user) => {
-            if(user) {
-                setUser(user);
-                setLoader(false);
-            }
+        const userStateChange = onAuthStateChanged(auth, user => {  
+            setLoader(false);
+            setUser(user);
+            
         })
         return userStateChange;
     },[])

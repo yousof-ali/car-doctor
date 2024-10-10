@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import logo from '../../../assets/logo.svg'
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { CiSearch } from "react-icons/ci";
 import { IoBagHandleOutline } from "react-icons/io5";
 import "./NavBar.css"
@@ -11,11 +11,12 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 const NavBar = () => {
 
    const {user,logOut} = useContext(AuthContext);
+   const navigate = useNavigate()
+
    const handleLogOut = () => {
         logOut()
-        .then(res => {
-          console.log(res)
-        })
+        navigate("/")
+        
            
    }
     const navItems = <>
@@ -24,7 +25,7 @@ const NavBar = () => {
     <li><NavLink to={'/about'}>About</NavLink></li>
     <li><NavLink to={'/contact'}>Contact</NavLink></li> 
     {
-      user?.email?<><li><Link onClick={handleLogOut}>Log Out</Link></li> <li><NavLink to={'/bookings'}>Bookings</NavLink></li> </> : <><li><NavLink to={'/Login'}>Login</NavLink></li> 
+      user?<> <li><NavLink to={'/bookings'}>Bookings</NavLink></li> </> : <><li><NavLink to={'/Login'}>Login</NavLink></li> 
       <li><NavLink to={'/signUp'}>Sign Up</NavLink></li></>
     }
     
@@ -74,7 +75,12 @@ const NavBar = () => {
             <CiSearch />
 
             </div>
-            <button className="btn outline outline-1 outline-[#FF3811] text-[#FF3811] bg-white hover:bg-[rgb(255,56,17)] hover:outline-none hover:text-white ">Appointment</button>
+            {
+              user?<button onClick={handleLogOut} className="btn outline outline-1 outline-[#FF3811] text-[#FF3811] bg-white hover:bg-[rgb(255,56,17)] hover:outline-none hover:text-white ">Logout</button>
+              : <Link to={'/login'}  className="btn outline outline-1 outline-[#FF3811] text-[#FF3811] bg-white hover:bg-[rgb(255,56,17)] hover:outline-none hover:text-white ">Login</Link>
+            }
+            
+           
         </div>
       </div>
     </div>

@@ -14,12 +14,14 @@ import CheckOut from "../Pages/CheckOut/CheckOut";
 import Bookings from "../Pages/Bookings/Bookings";
 import PrivateRouter from "./PrivateRouter";
 import Service from "../Pages/Home/Service/Service";
+import Error from "../Pages/Error";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement:<Error></Error>,
     children: [
         {
             path:'/',
