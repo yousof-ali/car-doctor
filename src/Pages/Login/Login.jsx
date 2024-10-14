@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import CommonButton from "../../Component/CommonButton";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
@@ -17,6 +17,7 @@ import Swal from "sweetalert2";
 const Login = () => {
   const{signIn} = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const [show,setshow] = useState(true);
 
     const handleSubmit = (e) =>{
@@ -35,7 +36,8 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500
           });
-          navigate('/')
+          navigate(location.state? location.state : "/")
+          
         })
         .catch((e) => {
           console.log(e.message);

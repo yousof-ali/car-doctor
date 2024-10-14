@@ -50,7 +50,7 @@ const CheckOut = () => {
       <div className="relative">
         <img className="w-full" src={serv} alt="" />
         <div className="w-full flex items-center  rounded-xl h-full absolute top-0 bg-gradient-to-r from-[#151515] to-[rgba(21,21,21,0)]">
-          <h2 className="text-2xl md:text-5xl ml-4 md:ml-16  font-bold text-white">
+          <h2 className="text-2xl md:text-5xl ml-4 md:ml-16  font-bold text-white mb-8">
             Add New Service
           </h2>
         </div>
