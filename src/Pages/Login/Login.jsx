@@ -4,49 +4,54 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaGoogle } from "react-icons/fa";
 import { FaLinkedinIn } from "react-icons/fa";
-import loginImg from "../../assets/images/login/login.svg"
+import loginImg from "../../assets/images/login/login.svg";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
-
-
-
-
+import axios from "axios";
 
 const Login = () => {
-  const{signIn} = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
-  const [show,setshow] = useState(true);
+  const [show, setshow] = useState(true);
 
-    const handleSubmit = (e) =>{
-        e.preventDefault();
-        const from = e.target 
-        const email = from.email.value
-        const password = from.password.value
-        console.log(email,password)
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const email = from.email.value;
+    const password = from.password.value;
+    console.log(email, password);
 
-        signIn(email,password)
+    signIn(email, password)
+      .then(() => {
+        const user = {email}
+        axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
         .then(result => {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Login",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          navigate(location.state? location.state : "/")
+          console.log(result.data);
+          if(result.data.success){
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Login",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate(location.state ? location.state : "/");
+          }
           
         })
-        .catch((e) => {
-          console.log(e.message);
-        })
-    }
+        
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
-    const handleHide = () => {
-       setshow(!show);
-    }
+  const handleHide = () => {
+    setshow(!show);
+  };
   return (
     <div className="hero bg-base-100 min-h-screen">
       <div className="flex flex-col my-4 md:my-0 mx-2 items-center max-w-[1500px] gap-12 lg:flex-row">
@@ -54,7 +59,7 @@ const Login = () => {
           <img src={loginImg} alt="" />
         </div>
         <div className="card p-6 bg-base-100 flex-1 w-full max-w-sm rounded-md shrink-0 border">
-          <form onSubmit={handleSubmit} >
+          <form onSubmit={handleSubmit}>
             <h2 className="text-center text-2xl font-bold">Login</h2>
             <div className="form-control">
               <label className="label">
@@ -73,14 +78,16 @@ const Login = () => {
                 <span className="label-text">Password</span>
               </label>
               <input
-                type={`${show?"password":"text"}`}
+                type={`${show ? "password" : "text"}`}
                 placeholder="password"
                 className="input input-bordered "
                 name="password"
                 required
               />
               <div className="cursor-pointer" onClick={handleHide}>
-                <span className="text-2xl absolute top-[42%] right-5">{show?<FaEye/>:<FaEyeSlash/>}</span>
+                <span className="text-2xl absolute top-[42%] right-5">
+                  {show ? <FaEye /> : <FaEyeSlash />}
+                </span>
               </div>
               <label className="label">
                 <a href="#" className="label-text-alt link link-hover">
@@ -95,22 +102,27 @@ const Login = () => {
           <div className="divider ">Sign in with</div>
           <div className="flex justify-center gap-4 my-2">
             <div className="bg-base-200 p-2 rounded-full">
-            <Link className="text-2xl bg-base-200"><FaFacebook />
-            </Link>
+              <Link className="text-2xl bg-base-200">
+                <FaFacebook />
+              </Link>
             </div>
             <div className="bg-base-200 p-2 rounded-full">
-            <Link className="text-2xl bg-base-200"><FaGoogle />
-
-            </Link>
+              <Link className="text-2xl bg-base-200">
+                <FaGoogle />
+              </Link>
             </div>
             <div className="bg-base-200 p-2 rounded-full">
-            <Link className="text-2xl bg-base-200"><FaLinkedinIn />
-
-            </Link>
+              <Link className="text-2xl bg-base-200">
+                <FaLinkedinIn />
+              </Link>
             </div>
           </div>
-          <p>No Accouont ? <Link to={'/signUp'} className="btn btn-link text-[#FF3811]">Sign up</Link></p>
-
+          <p>
+            No Accouont ?{" "}
+            <Link to={"/signUp"} className="btn btn-link text-[#FF3811]">
+              Sign up
+            </Link>
+          </p>
         </div>
       </div>
     </div>

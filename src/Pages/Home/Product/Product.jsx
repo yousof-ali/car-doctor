@@ -11,7 +11,6 @@ const Product = () => {
             setProduct(data);
         })
     },[])
-    console.log(product);
     return (
         <div className=' md:pt-16 pb-6 bg-base-100 lg:pt-0 mx-2'>
             <div className='text-center  px-2'>

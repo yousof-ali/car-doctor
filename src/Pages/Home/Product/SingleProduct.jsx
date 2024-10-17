@@ -3,7 +3,6 @@ import { FaStar } from "react-icons/fa6";
 
 
 const SingleProduct = ({ product }) => {
-    console.log(product);
   return (
     <div className="card p-4 rounded-xl border ">
       <div className="px-10 flex-grow rounded-xl bg-base-200 pt-10">

@@ -1,11 +1,24 @@
-import React from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, NavLink, useLoaderData } from 'react-router-dom';
 import serv from "../../assets/images/checkout/checkout.png"
 import logo from "../../assets/logo.svg"
 import CommonButton from '../../Component/CommonButton';
+import { FaArrowRightLong } from "react-icons/fa6";
+
 
 const Details = () => {
     const data = useLoaderData();
+    const [alldata,setAlldata] = useState([]);
+    useEffect(() => {
+        fetch('http://localhost:5000/services')
+        .then(res => res.json())
+        .then(data => {
+            setAlldata(data)
+            console.log(data);
+
+        })
+        
+    },[])
     console.log(data);
     return (
         <div>
@@ -23,7 +36,7 @@ const Details = () => {
         </div>
 
       </div>
-      <div className='grid md:grid-cols-3 mx-2 mx:mx-0 gap-4 my-12'>
+      <div className='grid grid-cols-1 md:grid-cols-3 mx-2 mx:mx-0 md:gap-4 my-12'>
         <div className='col-span-2'>
             <img src={data.img} className='rounded max-h-[400px] w-full' alt="" />
             <h2 className='text-3xl font-bold my-4'>{data.title}</h2>
@@ -68,15 +81,12 @@ const Details = () => {
             </div>
             </div>
         </div>
-        <div className='col-span-1 '>
-            <div className='p-4 rounded bg-base-200 space-y-4'>
+        <div className='col-span-1 mx-auto'>
+            <div className='p-4  rounded bg-base-200 space-y-4'>
                 <h2 className='text-2xl font-bold'>Services</h2>
-                <Link to={'http://localhost:5174/details/66fa9b846a33c58f7c3b7924'}  className={`${data.title=="Electrical System"?"p-2 block text-white font-bold rounded bg-[#FF3811]":"block p-2 bg-base-100 font-bold"}`}>Electrical System </Link>
-                <Link to={'http://localhost:5174/details/66fa9b846a33c58f7c3b7923'}  className={`${data.title=="Automatic Services"?"p-2 block text-white font-bold rounded bg-[#FF3811]":"block p-2 bg-base-100 font-bold"}`}>Automatic Services</Link>
-                <Link to={'http://localhost:5174/details/66fa9b846a33c58f7c3b7921'} className={`${data.title=="Full car Repair"?"p-2 block text-white font-bold rounded bg-[#FF3811]":"block p-2 bg-base-100 font-bold"}`}>Full car Repair</Link>
-                <Link to={'http://localhost:5174/details/66fa9b846a33c58f7c3b791f'} className={`${data.title=="Engine Oil Change"?"p-2 block text-white font-bold rounded bg-[#FF3811]":"block p-2 bg-base-100 font-bold"}`}>Engine Oil Change</Link>
-                <Link to={'http://localhost:5173/details/66fa9b846a33c58f7c3b7922'} className={`${data.title=="Engine Repair"?"p-2 block text-white font-bold rounded bg-[#FF3811]":"block p-2 bg-base-100 font-bold"}`}>Engine Repair</Link>
-                <Link to={'http://localhost:5173/details/66fa9b846a33c58f7c3b7920'} className={`${data.title=="Battery Charge"?"p-2 block text-white font-bold rounded bg-[#FF3811]":"block p-2 bg-base-100 font-bold"}`}>Battery Charge</Link>
+                {
+                    alldata?.map(single => <NavLink to={`/details/${single._id}`} className={`font-bold ${data.title === single.title?'bg-[#FF3811] text-white':'bg-base-100'} rounded justify-between items-center flex p-2`} key={single._id}>{single.title} <FaArrowRightLong /></NavLink>)
+                }
             </div>
 
             <div className='bg-black px-6 py-12 mt-10 rounded'>
@@ -97,7 +107,7 @@ const Details = () => {
             </div>
             <div className='mt-10'>
                 <h2 className='text-4xl mb-4 font-bold'>Price ${data.price}</h2>
-                <CommonButton className={'w-full'} label={"Proceed Checkout"}></CommonButton>
+                <Link to={`/book-now/${data._id}`}><CommonButton  className={'w-full'} label={"Proceed Checkout"}></CommonButton></Link>
             </div>
             
         </div>
