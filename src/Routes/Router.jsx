@@ -40,12 +40,12 @@ const router = createBrowserRouter([
         {
           path:'/book-now/:id',
           element:<PrivateRouter><CheckOut></CheckOut></PrivateRouter>,
-          loader:({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+          loader:({params}) => fetch(`https://car-doctor-server-delta-nine-48.vercel.app/services/${params.id}`)
         },
         {
           path:'/details/:id',
           element:<Details></Details>,
-          loader:({params}) => fetch(`http://localhost:5000/services/${params.id}`)
+          loader:({params}) => fetch(`https://car-doctor-server-delta-nine-48.vercel.app/services/${params.id}`)
         },
         {
           path:'/bookings',

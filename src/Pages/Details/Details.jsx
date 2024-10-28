@@ -10,16 +10,16 @@ const Details = () => {
     const data = useLoaderData();
     const [alldata,setAlldata] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/services')
+        fetch('https://car-doctor-server-delta-nine-48.vercel.app/services')
         .then(res => res.json())
         .then(data => {
             setAlldata(data)
-            console.log(data);
+            
 
         })
         
     },[])
-    console.log(data);
+
     return (
         <div>
             <div className="relative">

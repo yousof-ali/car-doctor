@@ -15,7 +15,7 @@ const SingleBooking = ({booking,data,setData}) => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/delete/${id}`,{
+                fetch(`https://car-doctor-server-delta-nine-48.vercel.app/delete/${id}`,{
                     method:"DELETE"
                 })
                 .then(res => res.json())
@@ -35,9 +35,8 @@ const SingleBooking = ({booking,data,setData}) => {
         });
     }
     
-    const handleBookingConfirm = (id) => {
-        console.log("hello")
-        fetch(`http://localhost:5000/update/${id}`,{
+    const handleBookingConfirm = (id) => {      
+        fetch(`https://car-doctor-server-delta-nine-48.vercel.app/update/${id}`,{
             method:'PATCH',
             headers:{
                 'content-type':"application/json"
@@ -46,7 +45,6 @@ const SingleBooking = ({booking,data,setData}) => {
         })
         .then(res => res.json())
         .then(result => {
-            console.log(result);
             if(result.modifiedCount > 0){
                 const remaining = data.filter(single => single._id !== id) 
                 const updated = data.find(single => single._id === id)

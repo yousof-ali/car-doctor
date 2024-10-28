@@ -1,6 +1,7 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import auth from '../Firebase/Firebase.config';
+import axios from 'axios';
 
 
 export const AuthContext = createContext(null);
@@ -14,12 +15,33 @@ const AuthProvider = ({children}) => {
     }
 
     useEffect(() => {
-        const userStateChange = onAuthStateChanged(auth, user => {  
+        const userStateChange = onAuthStateChanged(auth, currentUser => {  
             setLoader(false);
-            setUser(user);
+            setUser(currentUser);
+            const userEmail = currentUser?.email || user?.email
+            const currentUserEmail = {email:userEmail}
+            if(currentUser){
+                axios.post('https://car-doctor-server-delta-nine-48.vercel.app/jwt',currentUserEmail,{withCredentials:true})
+                .then(res => {
+                    console.log('token response',res.data)
+                })
+                .catch(err => {
+                    console.log(err.message)
+                })
+            }
+            else{
+                axios.post('https://car-doctor-server-delta-nine-48.vercel.app/logout',currentUserEmail,{withCredentials:true})
+                .then(res => {
+                })
+                .catch(err => {
+                    console.log(err.message)
+                })
+            }
             
         })
-        return userStateChange;
+        return () => {
+            userStateChange();
+        } 
     },[])
 
     const logOut = () => {

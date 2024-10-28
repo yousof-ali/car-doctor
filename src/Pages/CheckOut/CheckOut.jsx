@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 
 const CheckOut = () => {
   const{user} = useContext(AuthContext);
-  console.log(user);
   const service = useLoaderData();
   const {_id,price,title,img} = service
   const navigate = useNavigate();
@@ -21,9 +20,8 @@ const CheckOut = () => {
     const date = from.date.value 
 
     const data = {name,email,amout:price,date,img,services_id:_id,services:title};
-    console.log(data)
 
-    fetch('http://localhost:5000/bookings',{
+    fetch('https://car-doctor-server-delta-nine-48.vercel.app/bookings',{
       method:"POST",
       headers:{
         'content-type':'application/json'
@@ -32,7 +30,6 @@ const CheckOut = () => {
     })
     .then(res => res.json())
     .then(result => {
-      console.log(result);
       if(result.insertedId){
         Swal.fire({
           position: "center",

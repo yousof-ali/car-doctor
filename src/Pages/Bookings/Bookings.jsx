@@ -2,26 +2,22 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import SingleBooking from "./SingleBooking";
 import service from "../../assets/images/checkout/checkout.png";
-import axios from "axios";
+
 
 const Bookings = () => {
   const { user } = useContext(AuthContext);
-  const url = `http://localhost:5000/bookings?email=${user?.email}`;
+  const url = `https://car-doctor-server-delta-nine-48.vercel.app/bookings?email=${user?.email}`;
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(url,{withCredentials:true})
-    .then(result => {
-      setData(result.data);
-    })
-    // fetch(url)
-    //   .then((res) => res.json())
-    //   .then((services) => {
-    //     setData(services);
-    //   });
+    fetch(url,{credentials:'include'})
+      .then((res) => res.json())
+      .then((services) => {
+        setData(services);
+      });
   }, [url]);
-  console.log(data);
+  
 
   return (
     <div className="min-h-screen ">

@@ -10,7 +10,7 @@ import { AiOutlineMessage } from "react-icons/ai";
 const Service = () => {
     const [service,setService] = useState([]);
     useEffect(()=>{
-        fetch('http://localhost:5000/services')
+        fetch('https://car-doctor-server-delta-nine-48.vercel.app/services')
         .then(res => res.json())
         .then(data => {
             setService(data);

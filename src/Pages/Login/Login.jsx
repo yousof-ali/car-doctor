@@ -22,26 +22,17 @@ const Login = () => {
     const from = e.target;
     const email = from.email.value;
     const password = from.password.value;
-    console.log(email, password);
 
     signIn(email, password)
       .then(() => {
-        const user = {email}
-        axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
-        .then(result => {
-          console.log(result.data);
-          if(result.data.success){
-            Swal.fire({
-              position: "center",
-              icon: "success",
-              title: "Login",
-              showConfirmButton: false,
-              timer: 1500,
-            });
-            navigate(location.state ? location.state : "/");
-          }
-          
-        })
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Login",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(location.state ? location.state : "/");
         
       })
       .catch((e) => {
